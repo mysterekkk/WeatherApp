@@ -21,3 +21,7 @@ To use the app, follow these steps:
 4. The app will display the weather information of the entered city.
 
 Note: To use the app, you will need to get an API key from OpenWeatherMap.
+
+
+![32](https://user-images.githubusercontent.com/91424068/224089607-dfaaebf0-f454-4ea5-b372-6fb2a32f635f.PNG)<br>
+![33](https://user-images.githubusercontent.com/91424068/224089624-11837c09-6310-423c-bcb9-b144ab69cd9c.PNG)
