@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function getWeather() {
+            // Retrieve the city name entered by the user from the search field
+            const city = document.getElementById("search-bar").value;
+
+            // Create a query to the OpenWeatherMap API to retrieve weather information
+            const apiKey = "YOUR API KEY";
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            // Send a request to the API using the fetch() method
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => { // Weather information on the site
+                    const weatherInfo = document.getElementById("weather-info");
+                    weatherInfo.innerHTML = `
+						<p>City: ${data.name}</p>
+						<p>Temperature: ${Math.round(data.main.temp)}°C</p>
+						<p>Pressure: ${data.main.pressure} hPa</p>
+						<p>Wind: ${data.wind.speed} m/s</p>
+						<p>Humidity: ${data.main.humidity}%</p>
+					`;
+                    weatherInfo.style.display = "block";
+                })
+                .catch(error => { // In case of an error, a message displayed on the page
+                    const weatherInfo = document.getElementById("weather-info");
+                    weatherInfo.innerHTML = `<p>Weather information for the city cannot be downloaded ${city}. <br>Try it again.</p>`;
+                    weatherInfo.style.display = "block";
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form>
+            <input type="text" id="search-bar" placeholder="Enter the name of the city">
+            <button type="button" id="search-button" onclick="getWeather()"><i class="fas fa-search"></i></button>
+        </form>
+        <div id="weather-info"></div>
+    </div>
+</body>
+
+</html>
